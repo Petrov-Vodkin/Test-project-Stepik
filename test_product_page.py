@@ -1,4 +1,4 @@
-# import time
+import time
 from pages.product_page import ProductPage
 
 
@@ -9,4 +9,5 @@ def test_guest_can_add_product_to_basket(browser):
     btn_to_basket = page.should_be_btn_add_to_basket()
     btn_to_basket.click()
     page.solve_quiz_and_get_code()
-#    time.sleep(3)
+    page.check_product_name_in_alert()
+    time.sleep(2)
