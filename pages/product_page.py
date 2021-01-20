@@ -13,4 +13,3 @@ class ProductPage(BasePage):
     def check_product_price_in_basket(self):
         assert self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text == self.browser.find_element(
             *ProductPageLocators.PRODUCT_PRICE_BASKET).text, "Invalid product name in alert"
-
