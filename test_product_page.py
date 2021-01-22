@@ -6,11 +6,12 @@ from pages.product_page import ProductPage
 num = [i for i in range(10)]
 num[7] = pytest.param("7", marks=pytest.mark.xfail)
 
-@pytest.mark.parametrize("num_promo", num)
+@pytest.mark.parametrize("num_promo", [1,2])
 def test_guest_can_add_product_to_basket(browser, num_promo):
     link = f"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer{num_promo}"
     page = ProductPage(browser, link)
     page.open()
+    page.should_not_be_success_message()
     btn_to_basket = page.should_be_btn_add_to_basket()
     btn_to_basket.click()
     page.solve_quiz_and_get_code()
