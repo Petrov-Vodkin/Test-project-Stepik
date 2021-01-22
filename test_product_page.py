@@ -1,4 +1,4 @@
-# import time
+import time
 import pytest
 from pages.product_page import ProductPage
 
@@ -17,4 +17,7 @@ def test_guest_can_add_product_to_basket(browser, num_promo):
     page.solve_quiz_and_get_code()
     page.check_product_name_in_alert()
     page.check_product_price_in_basket()
-#    time.sleep(2)
+    time.sleep(2)
+    page.is_disappeared()
+
+
