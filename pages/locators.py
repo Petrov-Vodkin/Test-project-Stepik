@@ -27,3 +27,4 @@ class BasePageLocators:
 
 class BasketPageLocators:
     ITEMS_TO_BUY = (By.CSS_SELECTOR, "#basket_formset")
+    TEXT_IS_EMPTY = (By.CSS_SELECTOR, "#content_inner > p")
