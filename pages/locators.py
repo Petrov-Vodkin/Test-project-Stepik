@@ -13,6 +13,7 @@ class BasketPageLocators:
 
 
 class LoginPageLocators:
+    ERROR_MESSAGE = (By.CSS_SELECTOR, "div.alert-danger")
     LOGIN_FORM = (By.CSS_SELECTOR, "form#login_form")
     REGISTER_FORM = (By.CSS_SELECTOR, "form#register_form")
     BUTTON_TO_REG = (By.CSS_SELECTOR, "#register_form > button.btn")
