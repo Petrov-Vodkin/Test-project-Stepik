@@ -1,7 +1,9 @@
 import pytest
 
+# from mimesis import Person
 from pages.basket_page import BasketPage
 from pages.product_page import ProductPage
+# from pages.login_page import LoginPage
 
 
 @pytest.mark.login

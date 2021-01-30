@@ -15,4 +15,16 @@ class LoginPage(BasePage):
         assert self.browser.find_element(*LoginPageLocators.LOGIN_FORM), "Login form is not presented"
 
     def should_be_register_form(self):
-        assert self.browser.find_element(*LoginPageLocators.REGISTER_FORM), "Register form is not presented"
+        assert self.browser.find_element(*LoginPageLocators.REGISTER_FORM), "Registration form is not presented"
+
+    def register_new_user(self, email, password):
+        browser = self.browser
+
+        def push_keys(element, keys):
+            browser.find_element(*element).send_keys(keys)
+            return True
+
+        assert (push_keys(LoginPageLocators.REG_EMAIL_FORM, email)), "Error while registering email"
+        assert (push_keys(LoginPageLocators.REG_PASSWORD_FORM, password)), "Password registration error"
+        assert (push_keys(LoginPageLocators.REG_CONFIRM_FORM, password)), "Password confirm registration error"
+        browser.find_element(*LoginPageLocators.BUTTON_TO_REG).click()

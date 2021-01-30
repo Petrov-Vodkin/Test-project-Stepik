@@ -15,10 +15,14 @@ class BasketPageLocators:
 class LoginPageLocators:
     LOGIN_FORM = (By.CSS_SELECTOR, "form#login_form")
     REGISTER_FORM = (By.CSS_SELECTOR, "form#register_form")
+    BUTTON_TO_REG = (By.CSS_SELECTOR, "#register_form > button.btn")
+    REG_EMAIL_FORM = (By.CSS_SELECTOR, "#id_registration-email")
+    REG_PASSWORD_FORM = (By.CSS_SELECTOR, "#id_registration-password1")
+    REG_CONFIRM_FORM = (By.CSS_SELECTOR, "#id_registration-password2")
 
 
 class MainPageLocators:
-    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+    ALERT_THX_FOR_REG = (By.CSS_SELECTOR, "#messages > div.alert-success")
 
 
 class ProductPageLocators:

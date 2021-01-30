@@ -2,4 +2,5 @@ from .base_page import BasePage
 
 
 class MainPage(BasePage):
-    pass
+    def should_be_alert_successful_registration(self):
+        pass
