@@ -20,12 +20,20 @@ class TestUserAddToBasketFromProductPage:
         page.should_not_be_reg_error_message()
         MainPage(browser, browser.current_url).should_be_alert_successful_registration()
         self.page = ProductPage(browser, link)
+        self.page.open()
+        self.page.should_be_authorized_user()
 
     def test_user_can_add_product_to_basket(self, setup):
-        pass
+        page = self.page
+        page.should_not_be_success_message()
+        btn_to_basket = page.should_be_btn_add_to_basket()
+        btn_to_basket.click()
+        page.check_product_name_in_alert()
+        page.check_product_price_in_basket()
+#        page.should_disappear()
 
     def test_user_cant_see_success_message(self, setup):
-        pass
+        self.page.should_not_be_success_message()
 
 
 @pytest.mark.login
