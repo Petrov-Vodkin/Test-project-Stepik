@@ -1,9 +1,31 @@
 import pytest
 
-# from mimesis import Person
+from mimesis import Person
 from pages.basket_page import BasketPage
 from pages.product_page import ProductPage
-# from pages.login_page import LoginPage
+from pages.login_page import LoginPage
+from pages.main_page import MainPage
+
+
+@pytest.mark.basket_user
+class TestUserAddToBasketFromProductPage:
+    @pytest.fixture(scope="function")
+    def setup(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+        self.page = LoginPage(browser, link)
+        page = self.page
+        page.open()
+        page.go_to_login_page()
+        page.register_new_user(email=Person().email(), password=Person().password(length=10))
+        page.should_not_be_reg_error_message()
+        MainPage(browser, browser.current_url).should_be_alert_successful_registration()
+        self.page = ProductPage(browser, link)
+
+    def test_user_can_add_product_to_basket(self, setup):
+        pass
+
+    def test_user_cant_see_success_message(self, setup):
+        pass
 
 
 @pytest.mark.login

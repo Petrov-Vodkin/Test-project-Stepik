@@ -29,6 +29,6 @@ class LoginPage(BasePage):
         assert (push_keys(LoginPageLocators.REG_CONFIRM_FORM, password)), "Password confirm registration error"
         browser.find_element(*LoginPageLocators.BUTTON_TO_REG).click()
 
-    def should_not_be_error_message(self):
+    def should_not_be_reg_error_message(self):
         assert self.is_not_element_present(*LoginPageLocators.ERROR_MESSAGE), \
             "Error message is presented, but should not be"
