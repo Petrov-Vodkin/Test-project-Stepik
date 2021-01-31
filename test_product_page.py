@@ -23,6 +23,7 @@ class TestUserAddToBasketFromProductPage:
         self.page.open()
         self.page.should_be_authorized_user()
 
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, setup):
         page = self.page
         page.should_not_be_success_message()
@@ -49,10 +50,12 @@ class TestLoginFromProductPages:
     def test_guest_should_see_login_link_on_product_page(self, setup):
         self.page.should_be_login_link()
 
+    @pytest.mark.need_review
     def test_guest_can_go_to_login_page_from_product_page(self, setup):
         self.page.go_to_login_page()
 
 
+@pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/hacking-exposed-wireless_208/"
     page = ProductPage(browser, link)
@@ -94,6 +97,7 @@ num = [i for i in range(10)]
 num[7] = pytest.param("7", marks=pytest.mark.xfail)
 
 
+@pytest.mark.need_review
 @pytest.mark.parametrize("num_promo", [num[7]])
 def test_guest_can_add_product_to_basket(browser, num_promo):
     link = f"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer{num_promo}"
