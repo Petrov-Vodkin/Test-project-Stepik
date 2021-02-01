@@ -13,11 +13,10 @@ class TestUserAddToBasketFromProductPage:
     def setup(self, browser):
         link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
         self.page = LoginPage(browser, link)
-        page = self.page
-        page.open()
-        page.go_to_login_page()
-        page.register_new_user(email=Person().email(), password=Person().password(length=10))
-        page.should_not_be_reg_error_message()
+        self.page.open()
+        self.page.go_to_login_page()
+        self.page.register_new_user(email=Person().email(), password=Person().password(length=10))
+        self.page.should_not_be_reg_error_message()
         MainPage(browser, browser.current_url).should_be_alert_successful_registration()
         self.page = ProductPage(browser, link)
         self.page.open()
@@ -31,7 +30,6 @@ class TestUserAddToBasketFromProductPage:
         btn_to_basket.click()
         page.check_product_name_in_alert()
         page.check_product_price_in_basket()
-#        page.should_disappear()
 
     def test_user_cant_see_success_message(self, setup):
         self.page.should_not_be_success_message()
@@ -98,7 +96,7 @@ num[7] = pytest.param("7", marks=pytest.mark.xfail)
 
 
 @pytest.mark.need_review
-@pytest.mark.parametrize("num_promo", [num[7]])
+@pytest.mark.parametrize("num_promo", num)
 def test_guest_can_add_product_to_basket(browser, num_promo):
     link = f"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer{num_promo}"
     page = ProductPage(browser, link)
@@ -109,4 +107,3 @@ def test_guest_can_add_product_to_basket(browser, num_promo):
     page.solve_quiz_and_get_code()
     page.check_product_name_in_alert()
     page.check_product_price_in_basket()
-    page.should_disappear()
