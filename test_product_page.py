@@ -12,11 +12,11 @@ class TestUserAddToBasketFromProductPage:
     @pytest.fixture(scope="function")
     def setup(self, browser):
         link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
-        self.page = LoginPage(browser, link)
-        self.page.open()
-        self.page.go_to_login_page()
-        self.page.register_new_user(email=Person().email(), password=Person().password(length=10))
-        self.page.should_not_be_reg_error_message()
+        page = LoginPage(browser, link)
+        page.open()
+        page.go_to_login_page()
+        page.register_new_user(email=Person().email(), password=Person().password(length=10))
+        page.should_not_be_reg_error_message()
         MainPage(browser, browser.current_url).should_be_alert_successful_registration()
         self.page = ProductPage(browser, link)
         self.page.open()
@@ -24,12 +24,11 @@ class TestUserAddToBasketFromProductPage:
 
     @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, setup):
-        page = self.page
-        page.should_not_be_success_message()
-        btn_to_basket = page.should_be_btn_add_to_basket()
+        self.page.should_not_be_success_message()
+        btn_to_basket = self.page.should_be_btn_add_to_basket()
         btn_to_basket.click()
-        page.check_product_name_in_alert()
-        page.check_product_price_in_basket()
+        self.page.check_product_name_in_alert()
+        self.page.check_product_price_in_basket()
 
     def test_user_cant_see_success_message(self, setup):
         self.page.should_not_be_success_message()
